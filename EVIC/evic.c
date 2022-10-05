@@ -14,6 +14,7 @@
 **********************************************************************/
 #include <xc.h>
 #include "evic.h"
+#include "pic32mz_registers.h"
 
 /**********************************************************************
 * Module Preprocessor Constants
@@ -26,30 +27,25 @@
 /**********************************************************************
 * Module Typedefs
 **********************************************************************/
-typedef struct{
-    uint32_t reg;
-    uint32_t clr;
-    uint32_t set;
-    uint32_t inv;
-}volatile * const EVIC_Reg;
+
 /*********************************************************************
 * Module Variable Definitions
 **********************************************************************/
 /**
- * Define la posiciÛn inicial de los registros de prioridad y subprioridad de
+ * Define la posici√≥n inicial de los registros de prioridad y subprioridad de
  * interrupciones del pic32MZ.
  */
-static EVIC_Reg ipcBase = (EVIC_Reg)(&IPC0);
+static MemRegister ipcBase = (MemRegister)(&IPC0);
 /**
- * Define la posiciÛn inicial de los registros de habilitaciÛn de interrupciones
+ * Define la posici√≥n inicial de los registros de habilitaci√≥n de interrupciones
  * del pic32MZ.
  */
-static EVIC_Reg iecBase = (EVIC_Reg)(&IEC0);
+static MemRegister iecBase = (MemRegister)(&IEC0);
 /**
- * Define la posiciÛn inicial de los registros de banderas de interrupciÛn
+ * Define la posici√≥n inicial de los registros de banderas de interrupci√≥n
  * del pic32MZ.
  */
-static EVIC_Reg ifsBase = (EVIC_Reg)(&IFS0);
+static MemRegister ifsBase = (MemRegister)(&IFS0);
 
 /**********************************************************************
 * Function Definitions
@@ -59,20 +55,20 @@ void EVIC_Init(const EVIC_Config *config)
     /*Multi-vectored interrupts*/
     INTCONSET = _INTCON_MVEC_MASK;
     
-    /*ConfiguraciÛn de registros IPC de prioridad y subprioridad.
-     Nota: La prioridad debe ser mayor a 0. Si la prioridad es 0 la interrupciÛn
-     no ser· atendida por el procesasdor.
+    /*Configuraci√≥n de registros IPC de prioridad y subprioridad.
+     Nota: La prioridad debe ser mayor a 0. Si la prioridad es 0 la interrupci√≥n
+     no ser√° atendida por el procesasdor.
      */
     int i;
     for(i=0;i<config->tableSize;i++){
-        /*Dividir para cuatro el n˙mero del canal de interrupciÛn para obtener
-         la direcciÛn del registro IPC correspondiente.*/
+        /*Dividir para cuatro el n√∫mero del canal de interrupci√≥n para obtener
+         la direcci√≥n del registro IPC correspondiente.*/
         int offset = config->table[i].channel >> 2;
-        /*Se utiliza los dos primeros bits del n˙mero del canal para obtener el
+        /*Se utiliza los dos primeros bits del n√∫mero del canal para obtener el
          offset del byte correspondiente dentro del registro IPC*/
         int byteOffset = config->table[i].channel & 0b11;
         /*Apuntar hacia el registro IPC correspondiente*/
-        EVIC_Reg reg = ipcBase+offset;
+        MemRegister reg = ipcBase+offset;
         /*Configurar prioridad y subprioridad del byte en el registro IPC*/
         reg->set = (config->table[i].subPriority << (8*byteOffset)) | 
                 (config->table[i].priority << (8*byteOffset+2));
@@ -85,7 +81,7 @@ void EVIC_ChannelStateSet(EVIC_IrqChannel channel, EVIC_IrqState state)
 {
     int offset = channel >> 5; 
     int bitOffset = 1<<(channel & 0x1f);
-    EVIC_Reg reg = iecBase+offset;
+    MemRegister reg = iecBase+offset;
     if(state == IRQ_ENABLED)
         reg->set = bitOffset;
     else
@@ -96,7 +92,7 @@ bool EVIC_IrqPendingGet(EVIC_IrqChannel channel)
 {
     int offset = channel >> 5; 
     int bitOffset = 1<<(channel & 0x1f);
-    EVIC_Reg reg = ifsBase+offset;
+    MemRegister reg = ifsBase+offset;
     return reg->reg & bitOffset;
 }
 
@@ -104,7 +100,7 @@ void EVIC_IrqPendingClear(EVIC_IrqChannel channel)
 {
     int offset = channel >> 5; 
     int bitOffset = 1<<(channel & 0x1f);
-    EVIC_Reg reg = ifsBase+offset;
+    MemRegister reg = ifsBase+offset;
     reg->clr = bitOffset;
 }
 
