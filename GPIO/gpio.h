@@ -8,7 +8,7 @@ extern "C"{
 #endif
 
 /**
- * @brief Función de inicialización de los puertos del procesador.
+ * @brief Funciï¿½n de inicializaciï¿½n de los puertos del procesador.
  * 
  * @param config Puntero a la tabla de configuraciones.
  * @code
@@ -34,59 +34,59 @@ void GPIO_PinPullupSet(GPIO_PIN pin, GPIO_PULLUP state);
  */
 void GPIO_PinSetPullDown(GPIO_PIN pin, GPIO_PULLDOWN state);
 /**
- * @brief Activa o desactiva la interrupción por cambio de estado en el pin.
+ * @brief Activa o desactiva la interrupciï¿½n por cambio de estado en el pin.
  * 
  * @param pin Pin seleccionado.
- * @param state Estado activado o desactivado de la interrupción.
+ * @param state Estado activado o desactivado de la interrupciï¿½n.
  */
 void GPIO_PinIrqSet(GPIO_PIN pin, GPIO_INTERRUPT state);
 /**
- * @brief Lee el estado lógico actual del pin.
+ * @brief Lee el estado lï¿½gico actual del pin.
  * 
- * @param pin Es el pin que se leerá, definido con el enumerador GPIO_PIN.
- * @return GPIO_STATE Es el estado lógico del pin como HIGH o LOW.
+ * @param pin Es el pin que se leerï¿½, definido con el enumerador GPIO_PIN.
+ * @return GPIO_STATE Es el estado lï¿½gico del pin como HIGH o LOW.
  */
 GPIO_STATE GPIO_PinRead(GPIO_PIN pin);
 /**
- * @brief Escribe un estado lógico al pin seleccionado.
+ * @brief Escribe un estado lï¿½gico al pin seleccionado.
  * 
- * @param pin  Es el pin que será escrito, definido con el enumerador GPIO_PIN.
- * @param state Es el estado lógico que se quiere escribir en el pin, HIGH o LOW.
+ * @param pin  Es el pin que serï¿½ escrito, definido con el enumerador GPIO_PIN.
+ * @param state Es el estado lï¿½gico que se quiere escribir en el pin, HIGH o LOW.
  */
 void GPIO_PinWrite(GPIO_PIN pin, GPIO_STATE state);
 /**
- * @brief Invierte el estado lógico del pin seleccionado.
+ * @brief Invierte el estado lï¿½gico del pin seleccionado.
  * 
  */
 void GPIO_PinToggle(GPIO_PIN pin);
 /**
- * @brief Establece la dirección del pin como entrada o salida.
+ * @brief Establece la direcciï¿½n del pin como entrada o salida.
  * 
- * @param pin Es el pin al que se le cambiará la dirección.
- * @param direction Nueva dirección del pin, INPUT o OUTPUT.
+ * @param pin Es el pin al que se le cambiarï¿½ la direcciï¿½n.
+ * @param direction Nueva direcciï¿½n del pin, INPUT o OUTPUT.
  */
 void GPIO_PinDirectionSet(GPIO_PIN pin, GPIO_DIRECTION direction);
 /**
- * @brief Función utilizada para modificar un registro del perifperico GPIO.
+ * @brief Funciï¿½n utilizada para modificar un registro del perifperico GPIO.
  * 
- * @param address Dirección del registro.
- * @param val Valor que será escrito en el registro.
+ * @param address Direcciï¿½n del registro.
+ * @param val Valor que serï¿½ escrito en el registro.
  */
 void GPIO_RegisterWrite(uintptr_t address, TYPE val);
 /**
- * @brief Función utilizada para leer el estado de un registro del periférico GPIO.
+ * @brief Funciï¿½n utilizada para leer el estado de un registro del perifï¿½rico GPIO.
  * 
- * @param address Dirección del registro.
+ * @param address Direcciï¿½n del registro.
  * @return TYPE Estado del registro.
  */
 TYPE GPIO_RegisterRead(uintptr_t address);
 /**
- * @brief Función utilizada para registrar un callback para el pin especificado.
+ * @brief Funciï¿½n utilizada para registrar un callback para el pin especificado.
  * 
  * @param pin Pin del procesador.
- * @param callback Función que se ejecutará cuando se produzca una interrupción 
+ * @param callback Funciï¿½n que se ejecutarï¿½ cuando se produzca una interrupciï¿½n 
  * por cambio de estado en el pin especificado.
- * @param context Datos que serán pasados por la función de callback y la aplicación.
+ * @param context Datos que serï¿½n pasados por la funciï¿½n de callback y la aplicaciï¿½n.
  */
 void GPIO_CallbackRegister(
         GPIO_PIN pin, 

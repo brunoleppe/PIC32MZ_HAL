@@ -1,7 +1,7 @@
 /**
  * @file gpio_config.h
  * @author Bruno Leppe (bleppe@solintece.com)
- * @brief 
+ * @brief Definitions for GPIO peripheral configuration.
  * @version 0.1
  * @date 2022-09-27
  * 
@@ -31,21 +31,27 @@
 **********************************************************************/
 
 /**
- * @brief Define el número de pines en cada puerto del procesador.
+ * @brief Defines number of pins per port of current processor.
+ * This definition is not used in the current implementation as peripheral configuration
+ * is achieved with a configuration table of fixed size.
  * 
  */
 #define NUMBER_OF_CHANNELS_PER_PORT (16U)
 /**
- * @brief Define el número de puertos del procesador.
- * 
+ * @brief Define port count of current processor.
+ * This definition is not used in the current implementation as peripheral configuration
+ * is achieved with a configuration table of fixed size.
  */
 #define NUMBER_OF_PORTS             (7)
 /**
- * @brief Define el número de interrupciones de la aplicación.
+ * @brief Define interrupt count for current application. 
+ * Modify this macro to suit application pin interrupt needs. 
+ * This macro is used to statically allocate an array of interrupt callback objects per pin.
+ * If only one pin is configured to trigger an interrupt, NUMBER_OF_INTERRUPTS should be set to 1, etc.
  */
 #define NUMBER_OF_INTERRUPTS        (1)
 /**
- * @brief Define el ancho de la palabra de un registro del procesador.
+ * @brief Defines word length of current processor.
  * 
  */
 #define TYPE                        uint32_t
@@ -54,73 +60,73 @@
 extern "C"{
 #endif
 /**
- * @brief Define los posibles estados para un pin de salida digital.
+ * @brief Possible states for digital pin configured as output.
  * 
  */
 typedef enum{
-    LOW=0,///<Salida en bajo
-    HIGH,///<Salida en alto
+    LOW=0,///<Low level on pin
+    HIGH,///<High level on pin
 }GPIO_STATE;
 
 /**
- * @brief Define el tipo de pin.
+ * @brief Possible pin directions.
  * 
  */
 typedef enum{
-    D_INPUT,///<Pin de entrada digital
-    D_OUTPUT,///<Pin de salida digital
-    A_INPUT,///<Pin de entrada analógica
+    D_INPUT,///<Digital input pin
+    D_OUTPUT,///<Digital output pin
+    A_INPUT,///<Analog input pin
 }GPIO_DIRECTION;
 
 /**
- * @brief Define el estado de las resistencias de Pull-Up.
+ * @brief Possible states for pin internal pull-up resistors. 
  * 
  */
 typedef enum{
-    PULLUP_ENABLE,///<Habilitar Pull-up interna
-    PULLUP_DISABLE,///<Deshabilitar Pull-up interna
+    PULLUP_ENABLE,///<Internal pull-up resistors enabled.
+    PULLUP_DISABLE,///<Internal pull-up resistors disabled.
 }GPIO_PULLUP;
 
 /**
- * @brief Define el estado de las resistencias de Pull-Down.
+ * @brief Possible states for pin internal pull-down resistors. 
  * 
  */
 typedef enum{
-    PULLDOWN_ENABLE,///<Habilitar Pull-down interna
-    PULLDOWN_DISABLE,///<Deshabilitar Pull-down interna
+    PULLDOWN_ENABLE,///<Internal pull-down resistors enabled.
+    PULLDOWN_DISABLE,///<Internal pull-down resistors disabled.
 }GPIO_PULLDOWN;
 
 /**
- * @brief Define el slew rate para el pin
+ * @brief Possible slew rate states.
  * 
  */
 typedef enum{
-    SR_SLOWEST,///<Control de slew rate más lento
-    SR_SLOW,///<Control de slew rate lento
-    SR_FAST,///<Contol de slew rate normal 
-    SR_FASTEST,///<Control de slew rate más rápido
+    SR_SLOWEST,///<Slowest slew rate
+    SR_SLOW,///<Slow slew rate
+    SR_FAST,///<Fast/Default slew rate 
+    SR_FASTEST,///<Fastest slew rate
 }GPIO_SLEW_RATE;
 
 /**
- * @brief Define los estados posibles para open drain.
+ * @brief Possible open drain output states.
  * 
  */
 typedef enum{
-    OD_ENABLE,///<Habilitar open drain
-    OD_DISABLE,///<Deshabilitar open drain
+    OD_ENABLE,///<Open drain output enabled.
+    OD_DISABLE,///<Open drain output disabled.
 }GPIO_OPEN_DRAIN;
 
 /**
- * @brief Define los estados de la interrupción del pin por notificación de cambio
+ * @brief Possible state changed interrupt states.
  * 
  */
 typedef enum{
-    GPIO_IRQ_ENABLE,///<Habilitar interrupción por cambio de estado
-    GPIO_IRQ_DISABLE,///<Deshabilitar interrupción por cambio de estado
+    GPIO_IRQ_ENABLE,///<Enable state changed pin interrupt
+    GPIO_IRQ_DISABLE,///<Disable state changed pin interrupt
 }GPIO_INTERRUPT;
 
 /**
- * @brief Define los puertos del MCU
+ * @brief Current processor PORT definition.
  * 
  */
 typedef enum{
@@ -137,7 +143,10 @@ typedef enum{
 }GPIO_PORT;
 
 /**
- * @brief Define los pines disponibles del MCU
+ * @brief Current processor PIN definition.
+ * Each pin is assigned a corresponding bit value on the current port.
+ * Example: PORTB_1 belongs to PORTB (Pin bit val = 1, PORT val = 1) =>
+ * PORTX_Y = Y | (X << 4), therefor PORTB_1 = 1 | (1<<4) = 17.
  * 
  */
 typedef enum
@@ -221,13 +230,19 @@ typedef enum
     PORTG_14 = 110,
     PORTG_15 = 111,
 
-    /* This element should not be used in any of the GPIO APIs.
-       It will be used by other modules or application to denote that none of the GPIO Pin is used */
-    PORT_NONE = -1
+    
+    PIN_NONE = -1
 
 }GPIO_PIN;
 
-
+/**
+ * @brief Input map register definitions for PIC32MZ family. 
+ * Each element contains the address of the corresponding input map register.
+ * Refer to PIC32MZ datasheet.
+ * 
+ * This definition should only be included in PIC32MZ family configurations.
+ * 
+ */
 typedef enum{
     MAP_INT1R=0x1404,
     MAP_INT2R=0x1408,
@@ -281,7 +296,15 @@ typedef enum{
     MAP_REFCLKI3R=0x14F0,
     MAP_REFCLKI4R=0x14F4,
 }GPIO_INPUT_MAPPING;
-    
+
+ /**
+ * @brief Output map register definitions for PIC32MZ family. 
+ * Each element contains the address of the corresponding output map register.
+ * Refer to PIC32MZ datasheet.
+ * 
+ * This definition should only be included in PIC32MZ family configurations.
+ * 
+ */   
 typedef enum{
     MAP_RPA14R=0x1538,
     MAP_RPA15R=0x153C,
@@ -338,6 +361,10 @@ typedef enum{
     MAP_RPG9R=0x16A4,
 }GPIO_OUTPUT_MAPPING;
 
+/**
+ * @brief General pin alternate function definitions.
+ * 
+ */
 typedef enum{
     AF_0 = 0,
     AF_1,
@@ -359,50 +386,60 @@ typedef enum{
 }GPIO_ALTERNATE_FUNCTION;
 
 /**
- * @brief Define la función de callback para GPIO.
+ * @brief Pin interrput callback function typedef.
  * 
  */
 typedef void (*GPIO_CallbackFunction)(GPIO_PIN,uintptr_t);
 /**
- * @brief Define la estructura para el registro de callbacks.
+ * @brief Interrupt callback object definition.
  * 
  */
 typedef struct{
-    GPIO_PIN pin;
-    uintptr_t context;
-    GPIO_CallbackFunction callback;
+    GPIO_PIN pin;///<Callback is executed with this pin's interrupt triggers.
+    uintptr_t context;///<Generic data passed to the callback, user specified.
+    GPIO_CallbackFunction callback;///<Callback function.
 }GPIO_InterruptCallback;
 
 /**
- * @brief Define el modo de funcionamineto del PIN aplicado a PIC32MZ.
- * 
+ * @brief Defines pin mode by specifying pin alternate function.
+ * Implementation for PIC32MZ family.
  */
 typedef struct{
-    uint32_t reg;
-    GPIO_ALTERNATE_FUNCTION function;
+    uint32_t reg;///<Register address of Input or Output mapping
+    GPIO_ALTERNATE_FUNCTION function; ///<Alternate function for pin
 }GPIO_MODE;
 
 /**
- * @brief Define la configuración de un puerto.
+ * @brief Basic configuration table for current pin.
  * 
  */
 typedef struct{
-    GPIO_PIN pin;
-    GPIO_DIRECTION direction;
+    GPIO_PIN pin;///<Current pin being configured
+    GPIO_DIRECTION direction;///<Direction of current pin
 //    GPIO_PULLUP pullup;
 //    GPIO_PULLDOWN pulldown;
 //    GPIO_SLEW_RATE slew;
 //    GPIO_OPEN_DRAIN od;
-    GPIO_STATE state;
-    GPIO_MODE mode;
+    GPIO_STATE state;///<Initial output state of current pin
+    GPIO_MODE mode;///<Alternate function of current pin
 //    GPIO_INTERRUPT interruptState;
 }GPIO_ConfigTable;
-
+/**
+ * @brief GPIO peripheral configuration struct.
+ * This struct is passed to the @ref GPIO_Init function for pin initialization
+ * and peripheral configuration.
+ * 
+ */
 typedef struct{
-    const GPIO_ConfigTable *const table;
-    uint32_t tableSize;
+    const GPIO_ConfigTable *const table;///<Pointer to the configuration table.
+    const uint32_t tableSize;///<Configuration table size.
 }GPIO_Config;
 
+/**
+ * @brief Function that gets the configuration struct.
+ * 
+ * @return const GPIO_Config* Configuration struct.
+ */
 const GPIO_Config* GPIO_GetConfig( void );
 
 #ifdef __cplusplus
