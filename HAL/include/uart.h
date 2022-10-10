@@ -15,6 +15,7 @@
 /**********************************************************************
 * Includes
 **********************************************************************/
+#include "hal.h"
 #include "uart_config.h"
 
 /**********************************************************************
@@ -56,20 +57,20 @@ int UART_Init(const UART_Config *config);
  * @brief Inicia una escritura de datos en el canal UART.
  * 
  * @param channel Canal UART.
- * @param data Puntero a los datos de transmisión.
+ * @param data Puntero a los datos de transmisiï¿½n.
  * @param size Cantidad de datos.
  * 
- * @return Cantidad de datos envíados. Si es menor que 0, se produjo un error.
+ * @return Cantidad de datos envï¿½ados. Si es menor que 0, se produjo un error.
  */
 int UART_Write(UART_CHANNEL channel, void *data, size_t size);
 /**
  * @brief Inicia una lectura por el canal UART.
- * La operación de lectura contiene un puntero al búffer de lectura, el tamaño del búffer
- * y un caracter de terminación. Cuando el caracter es 0 la lectura de UART se mantiene 
- * activa hasta que se llene el búffer.
+ * La operaciï¿½n de lectura contiene un puntero al bï¿½ffer de lectura, el tamaï¿½o del bï¿½ffer
+ * y un caracter de terminaciï¿½n. Cuando el caracter es 0 la lectura de UART se mantiene 
+ * activa hasta que se llene el bï¿½ffer.
  * 
  * @param channel Canal UART.
- * @param op Puntero a la estructura de operación de lectura.
+ * @param op Puntero a la estructura de operaciï¿½n de lectura.
  * 
  * @return Cantidad de datos recibidos. Si es menor que 0, se prudojo un error.
  */
@@ -78,17 +79,17 @@ int UART_Read(UART_CHANNEL channel, UART_ReadOperation *op);
 int UART_WriteByte(UART_CHANNEL channel, uint8_t data);
 
 /**
- * @brief Función para escribir en un registro del periférico UART.
+ * @brief Funciï¿½n para escribir en un registro del perifï¿½rico UART.
  * 
- * @param address Dirección de memoria del registro.
+ * @param address Direcciï¿½n de memoria del registro.
  * @param val Valor a escribirse.
  */
 void UART_RegisterWrite(uint32_t address, uint32_t val);
 /**
- * @brief Función para leer un registro del periférico UART.
+ * @brief Funciï¿½n para leer un registro del perifï¿½rico UART.
  * 
- * @param address Dirección de memoria del registro
- * @return Valor leído.
+ * @param address Direcciï¿½n de memoria del registro
+ * @return Valor leï¿½do.
  */
 uint32_t UART_RegisterRead(uint32_t address);
 

@@ -20,7 +20,7 @@ extern "C" {
  * Struct used for mapping the base address of a register to obtain the following SET, CLR and INV registers.
  * Refer to PIC32MZ family datasheet.
  */
-typedef struct{
+typedef struct _MemRegister{
     uint32_t reg; ///<Base address of a register
     uint32_t clr; ///<Maps the CLR register
     uint32_t set; ///<Maps the SET register

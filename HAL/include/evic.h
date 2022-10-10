@@ -15,6 +15,7 @@
 /**********************************************************************
 * Includes
 **********************************************************************/
+#include "hal.h"
 #include "evic_config.h"
 
 /**********************************************************************
@@ -40,23 +41,23 @@ extern "C"{
  */
 void EVIC_Init(const EVIC_Config *config);
 /**
- * @brief Activa o desactiva la interrupción deseada.
+ * @brief Activa o desactiva la interrupciï¿½n deseada.
  * 
- * @param channel Interrupción que será modificada.
+ * @param channel Interrupciï¿½n que serï¿½ modificada.
  */
 void EVIC_ChannelStateSet(EVIC_IrqChannel channel, EVIC_IrqState state);
 /**
- * @brief Devuelve el estado de la bandera de interrupción.
+ * @brief Devuelve el estado de la bandera de interrupciï¿½n.
  * 
- * @param channel Interrupción de la cual se necesita el estado de su bandera.
- * @return true Si la interrupción ya ocurrió y no ha sido atendida.
- * @return false Falso si la interrupeción ya fue atendida o todavía no ocurre.
+ * @param channel Interrupciï¿½n de la cual se necesita el estado de su bandera.
+ * @return true Si la interrupciï¿½n ya ocurriï¿½ y no ha sido atendida.
+ * @return false Falso si la interrupeciï¿½n ya fue atendida o todavï¿½a no ocurre.
  */
 bool EVIC_IrqPendingGet(EVIC_IrqChannel channel);
 /**
- * @brief Limpia la bandera de interrupción después de que ha sido atendida.
+ * @brief Limpia la bandera de interrupciï¿½n despuï¿½s de que ha sido atendida.
  * 
- * @param channel Interrupción que será modificada;
+ * @param channel Interrupciï¿½n que serï¿½ modificada;
  */
 void EVIC_IrqPendingClear(EVIC_IrqChannel channel);
 /**
@@ -71,7 +72,7 @@ void EVIC_EnableInterrupts(void);
 bool EVIC_DisableInterrupts(void);
 /**
  * @brief Restaura el estado original de las interrupciones.
- * Se debe usar esta función cuando se deshabilitan las funciones usando
+ * Se debe usar esta funciï¿½n cuando se deshabilitan las funciones usando
  * EVIC_DisableInterrupts().
  * @example Ejemplo:
  * @code

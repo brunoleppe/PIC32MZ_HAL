@@ -18,7 +18,6 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include <xc.h>
 
 /**********************************************************************
 * Preprocessor Constants
@@ -28,12 +27,12 @@
 * Typedefs
 **********************************************************************/
 /**
- * @brief Define el canal de la interrupción.
+ * @brief Define el canal de la interrupciï¿½n.
  *  
  */
 typedef uint32_t EVIC_IrqChannel;
 /**
- * @brief Define las posibles prioridades de la interrupción.
+ * @brief Define las posibles prioridades de la interrupciï¿½n.
  * 
  */
 typedef enum{
@@ -47,7 +46,7 @@ typedef enum{
     IRQ_PRIO_7,
 }EVIC_IrqPriority;
 /**
- * @brief Define las posibles subprioridades de la interrupción.
+ * @brief Define las posibles subprioridades de la interrupciï¿½n.
  * 
  */
 typedef enum{
@@ -57,7 +56,7 @@ typedef enum{
     IRQ_SUB_3,
 }EVIC_IrqSubPriority;
 /**
- * @brief Define el estado de la interrupción.
+ * @brief Define el estado de la interrupciï¿½n.
  * 
  */
 typedef enum{

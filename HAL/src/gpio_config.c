@@ -119,11 +119,10 @@ enum o_pps1{
  */
 
 /**
- * @brief Tabla de configuración de pines del dispositivo.
+ * @brief Tabla de configuraciï¿½n de pines del dispositivo.
  * 
  */
 static const GPIO_ConfigTable configTable[]={
-
 //    {PORTA_5 , D_OUTPUT, PULLUP_DISABLE, PULLDOWN_DISABLE, SR_FASTEST, OD_DISABLE, HIGH, {0,AF_NONE}, GPIO_INT_DISABLE},
 //    {PORTA_9 , D_OUTPUT, PULLUP_DISABLE, PULLDOWN_DISABLE, SR_FASTEST, OD_DISABLE, LOW , {0,AF_NONE}, GPIO_INT_DISABLE},
 //    {PORTA_10, D_OUTPUT, PULLUP_DISABLE, PULLDOWN_DISABLE, SR_FASTEST, OD_DISABLE, LOW , {0,AF_NONE}, GPIO_INT_DISABLE},
@@ -172,55 +171,56 @@ static const GPIO_ConfigTable configTable[]={
 //    {PORTG_7 , D_OUTPUT, PULLUP_DISABLE, PULLDOWN_DISABLE, SR_FASTEST, OD_DISABLE, HIGH, {MAP_RPG7R,pps_SDO2}, GPIO_INT_DISABLE},
 //    {PORTG_8 , D_INPUT , PULLUP_DISABLE, PULLDOWN_DISABLE, SR_FASTEST, OD_DISABLE, HIGH, {0,AF_NONE}, GPIO_INT_DISABLE},
 //    {PORTG_9 , D_INPUT , PULLUP_DISABLE, PULLDOWN_DISABLE, SR_FASTEST, OD_DISABLE, HIGH, {0,AF_NONE}, GPIO_INT_DISABLE}
+//  |pin     |direction|pullup|pulldown|slewrate|state|irq|mode|
     
-    {PORTA_5 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTA_9 , D_OUTPUT, LOW , {0,AF_NONE}          },
-    {PORTA_10, D_OUTPUT, LOW , {0,AF_NONE}          },
-    {PORTA_15, D_INPUT , LOW , {MAP_SDI4R,pps_RPA15}},
+    {PORTA_5 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTA_9 , D_OUTPUT, 0, 0  , SR_FASTEST, LOW , 0 , {0,AF_NONE}          },
+    {PORTA_10, D_OUTPUT, 0, 0  , SR_FASTEST, LOW , 0 , {0,AF_NONE}          },
+    {PORTA_15, D_INPUT , 0, 0  , SR_FASTEST, LOW , 0 , {MAP_SDI4R,pps_RPA15}},
 
-    {PORTB_3 , D_OUTPUT, LOW , {MAP_RPB3R,pps_SDO3} },
-    {PORTB_4 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTB_5 , D_INPUT , HIGH, {MAP_SDI3R,pps_RPB5} },
-    {PORTB_6 , D_OUTPUT, LOW , {0,AF_NONE}          },
-    {PORTB_7 , D_OUTPUT, LOW , {0,AF_NONE}          },
-    {PORTB_8 , D_OUTPUT, LOW , {0,AF_NONE}          },
-    {PORTB_9 , D_OUTPUT, LOW , {0,AF_NONE}          },
-    {PORTB_10, D_INPUT , HIGH, {0,AF_NONE}          },    
-    {PORTB_11, D_INPUT , HIGH, {0,AF_NONE}          },    
-    {PORTB_12, D_INPUT , HIGH, {0,AF_NONE}          },    
-    {PORTB_13, D_INPUT , HIGH, {0,AF_NONE}          },    
-    {PORTB_14, D_OUTPUT, HIGH, {0,AF_NONE}          },
+    {PORTB_3 , D_OUTPUT, 0, 0  , SR_FASTEST, LOW , 0 , {MAP_RPB3R,pps_SDO3} },
+    {PORTB_4 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTB_5 , D_INPUT , 0, 0  , SR_FASTEST, HIGH, 0 , {MAP_SDI3R,pps_RPB5} },
+    {PORTB_6 , D_OUTPUT, 0, 0  , SR_FASTEST, LOW , 0 , {0,AF_NONE}          },
+    {PORTB_7 , D_OUTPUT, 0, 0  , SR_FASTEST, LOW , 0 , {0,AF_NONE}          },
+    {PORTB_8 , D_OUTPUT, 0, 0  , SR_FASTEST, LOW , 0 , {0,AF_NONE}          },
+    {PORTB_9 , D_OUTPUT, 0, 0  , SR_FASTEST, LOW , 0 , {0,AF_NONE}          },
+    {PORTB_10, D_INPUT , 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },    
+    {PORTB_11, D_INPUT , 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },    
+    {PORTB_12, D_INPUT , 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },    
+    {PORTB_13, D_INPUT , 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },    
+    {PORTB_14, D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
 
-    {PORTC_1 , D_OUTPUT, HIGH, {MAP_RPC1R,pps_U3TX} },
-    {PORTC_3 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTC_4 , D_OUTPUT, HIGH, {0,AF_NONE}          },
+    {PORTC_1 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {MAP_RPC1R,pps_U3TX} },
+    {PORTC_3 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTC_4 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
 
-    {PORTD_0 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTD_2 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTD_4 , D_INPUT , HIGH, {MAP_U2RXR,pps_RPD4} },
-    {PORTD_5 , D_OUTPUT, HIGH, {MAP_RPD5R,pps_U2TX} },
-    {PORTD_10, D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTD_11, D_OUTPUT, HIGH, {0,AF_NONE}          },
+    {PORTD_0 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTD_2 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTD_4 , D_INPUT , 0, 0  , SR_FASTEST, HIGH, 0 , {MAP_U2RXR,pps_RPD4} },
+    {PORTD_5 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {MAP_RPD5R,pps_U2TX} },
+    {PORTD_10, D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTD_11, D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
 
-    {PORTE_5 , D_INPUT , HIGH, {MAP_U3RXR,pps_RPE5} },
-    {PORTE_6 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTE_7 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTE_8 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTE_9 , D_INPUT , HIGH, {0,AF_NONE}          },
+    {PORTE_5 , D_INPUT , 0, 0  , SR_FASTEST, HIGH, 0 , {MAP_U3RXR,pps_RPE5} },
+    {PORTE_6 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTE_7 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTE_8 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTE_9 , D_INPUT , 1, 0  , SR_FASTEST, HIGH, 1 , {0,AF_NONE}          },
 
-    {PORTF_0 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTF_1 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTF_2 , D_OUTPUT, HIGH, {MAP_RPF2R,pps_OC1}  },
-    {PORTF_4 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTF_5 , D_OUTPUT, HIGH, {MAP_RPF5R,pps_SDO4} },
-    {PORTF_8 , D_OUTPUT, LOW , {0,AF_NONE}          },
+    {PORTF_0 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTF_1 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTF_2 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {MAP_RPF2R,pps_OC1}  },
+    {PORTF_4 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTF_5 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {MAP_RPF5R,pps_SDO4} },
+    {PORTF_8 , D_OUTPUT, 0, 0  , SR_FASTEST, LOW , 0 , {0,AF_NONE}          },
 
-    {PORTG_0 , D_OUTPUT, HIGH, {MAP_RPG0R,pps_U1TX} },
-    {PORTG_1 , D_INPUT , HIGH, {MAP_U1RXR,pps_RPG1} },
-    {PORTG_6 , D_OUTPUT, HIGH, {0,AF_NONE}          },
-    {PORTG_7 , D_OUTPUT, HIGH, {MAP_RPG7R,pps_SDO2} },
-    {PORTG_8 , D_INPUT , HIGH, {0,AF_NONE}          },
-    {PORTG_9 , D_INPUT , HIGH, {0,AF_NONE}          }
+    {PORTG_0 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {MAP_RPG0R,pps_U1TX} },
+    {PORTG_1 , D_INPUT , 0, 0  , SR_FASTEST, HIGH, 0 , {MAP_U1RXR,pps_RPG1} },
+    {PORTG_6 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTG_7 , D_OUTPUT, 0, 0  , SR_FASTEST, HIGH, 0 , {MAP_RPG7R,pps_SDO2} },
+    {PORTG_8 , D_INPUT , 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          },
+    {PORTG_9 , D_INPUT , 0, 0  , SR_FASTEST, HIGH, 0 , {0,AF_NONE}          }
 
 };
 static const GPIO_Config config ={

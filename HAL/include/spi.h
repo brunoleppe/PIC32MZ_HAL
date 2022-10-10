@@ -15,6 +15,7 @@
 /**********************************************************************
 * Includes
 **********************************************************************/
+#include "hal.h"
 #include "spi_config.h"
 
 /**********************************************************************
@@ -69,8 +70,8 @@ void SPI_Init(const SPI_Config *config);
  * @brief Inicia una transferencia de datos por el canal SPI establecido.
  * 
  * @param channel Canal SPI
- * @param txBuffer Búffer de transmisión de datos.
- * @param rxBuffer Búffer de recepción de datos.
+ * @param txBuffer Bï¿½ffer de transmisiï¿½n de datos.
+ * @param rxBuffer Bï¿½ffer de recepciï¿½n de datos.
  * @param size Cantidad de bytes que se van a transmitir.
  * 
  * @return La cantidad de bytes enviados. Si el resultado es menor a 0 hubo un
@@ -86,26 +87,26 @@ int SPI_Transfer(SPI_CHANNEL channel, SPI_TransferParam *transfer);
  */
 uint8_t SPI_TransferByte(SPI_CHANNEL channel, uint8_t data);
 /**
- * @brief Configura el canal SPI con los parámetros proporionados
+ * @brief Configura el canal SPI con los parï¿½metros proporionados
  * 
  * @param channel Canal SPI.
- * @param setup Estructura de parámetros para la configuración del canal.
+ * @param setup Estructura de parï¿½metros para la configuraciï¿½n del canal.
  * 
  * @return Cero si se pudo configurar el canal. Si el resultado es menor a 0 hubo
  * un error.
  */
 int SPI_TrasferSetup(SPI_CHANNEL channel, SPI_Setup *setup);
 /**
- * @brief Escribe en un registro del periférico SPI.
+ * @brief Escribe en un registro del perifï¿½rico SPI.
  * 
- * @param address Dirección de memoria del registro.
- * @param value Valor que será escrito en el registro.
+ * @param address Direcciï¿½n de memoria del registro.
+ * @param value Valor que serï¿½ escrito en el registro.
  */
 void SPI_RegisterWrite(uint32_t address, uint32_t value);
 /**
- * @brief Lee el contenido de un registro del periférico  SPI.
+ * @brief Lee el contenido de un registro del perifï¿½rico  SPI.
  * 
- * @param address Dirección de memoria del registro.
+ * @param address Direcciï¿½n de memoria del registro.
  * @return uint32_t Contenido del registro.
  */
 uint32_t SPI_RegisterRead(uint32_t address);

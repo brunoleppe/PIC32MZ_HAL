@@ -82,19 +82,21 @@ typedef enum{
  * @brief Possible states for pin internal pull-up resistors. 
  * 
  */
-typedef enum{
-    PULLUP_ENABLE,///<Internal pull-up resistors enabled.
-    PULLUP_DISABLE,///<Internal pull-up resistors disabled.
-}GPIO_PULLUP;
+// typedef enum{
+//     PULLUP_ENABLE,///<Internal pull-up resistors enabled.
+//     PULLUP_DISABLE,///<Internal pull-up resistors disabled.
+// }GPIO_PULLUP;
+typedef bool GPIO_PULLUP;
 
 /**
  * @brief Possible states for pin internal pull-down resistors. 
  * 
  */
-typedef enum{
-    PULLDOWN_ENABLE,///<Internal pull-down resistors enabled.
-    PULLDOWN_DISABLE,///<Internal pull-down resistors disabled.
-}GPIO_PULLDOWN;
+// typedef enum{
+//     PULLDOWN_ENABLE,///<Internal pull-down resistors enabled.
+//     PULLDOWN_DISABLE,///<Internal pull-down resistors disabled.
+// }GPIO_PULLDOWN;
+typedef bool GPIO_PULLDOWN;
 
 /**
  * @brief Possible slew rate states.
@@ -111,19 +113,21 @@ typedef enum{
  * @brief Possible open drain output states.
  * 
  */
-typedef enum{
-    OD_ENABLE,///<Open drain output enabled.
-    OD_DISABLE,///<Open drain output disabled.
-}GPIO_OPEN_DRAIN;
+// typedef enum{
+//     OD_ENABLE,///<Open drain output enabled.
+//     OD_DISABLE,///<Open drain output disabled.
+// }GPIO_OPEN_DRAIN;
+typedef bool GPIO_OPEN_DRAIN;
 
 /**
  * @brief Possible state changed interrupt states.
  * 
  */
-typedef enum{
-    GPIO_IRQ_ENABLE,///<Enable state changed pin interrupt
-    GPIO_IRQ_DISABLE,///<Disable state changed pin interrupt
-}GPIO_INTERRUPT;
+// typedef enum{
+//     GPIO_IRQ_ENABLE,///<Enable state changed pin interrupt
+//     GPIO_IRQ_DISABLE,///<Disable state changed pin interrupt
+// }GPIO_INTERRUPT;
+typedef bool GPIO_INTERRUPT;
 
 /**
  * @brief Current processor PORT definition.
@@ -416,13 +420,13 @@ typedef struct{
 typedef struct{
     GPIO_PIN pin;///<Current pin being configured
     GPIO_DIRECTION direction;///<Direction of current pin
-//    GPIO_PULLUP pullup;
-//    GPIO_PULLDOWN pulldown;
-//    GPIO_SLEW_RATE slew;
-//    GPIO_OPEN_DRAIN od;
+    GPIO_PULLUP pullup;
+    GPIO_PULLDOWN pulldown;
+    GPIO_SLEW_RATE slew;
+    GPIO_OPEN_DRAIN od;
     GPIO_STATE state;///<Initial output state of current pin
+    GPIO_INTERRUPT irq;
     GPIO_MODE mode;///<Alternate function of current pin
-//    GPIO_INTERRUPT interruptState;
 }GPIO_ConfigTable;
 /**
  * @brief GPIO peripheral configuration struct.
