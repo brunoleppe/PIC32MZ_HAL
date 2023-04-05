@@ -1,29 +1,33 @@
+#ifndef HAL_DELAY_H
+#define HAL_DELAY_H
+
 /**********************************************************************
 * Includes
 **********************************************************************/
-
-#include <xc.h>
-#include "hal.h"
+#include "hal_defs.h"
 
 /**********************************************************************
-* Module Preprocessor Constants
+* Preprocessor Constants
+**********************************************************************/
+#define MICRO_SECONDS               (1000000)
+#define MILLI_SECONDS               (1000)
+/**********************************************************************
+* Typedefs
 **********************************************************************/
 
 /**********************************************************************
-* Module Preprocessor Macros
+* Function Prototypes
 **********************************************************************/
+#ifdef __cplusplus
+extern "C"{
+#endif
 
-/**********************************************************************
-* Module Typedefs
-**********************************************************************/
+void HAL_delay_ms(uint32_t ms);
+void HAL_delay_us(uint32_t us);
+void HAL_delay_cy(uint32_t cy);
 
-struct _MemRegister{
-    uint32_t reg; ///<Base address the register
-    uint32_t clr; ///<Maps the CLR register
-    uint32_t set; ///<Maps the SET register
-    uint32_t inv; ///<Maps the INV register
-};
+#ifdef __cplusplus
+}
+#endif
 
-/*********************************************************************
-* Module Variable Definitions
-**********************************************************************/
+#endif //HAL_DELAY_H
